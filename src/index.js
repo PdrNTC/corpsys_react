@@ -4,6 +4,8 @@ import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
 import Home from './routes/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CadastrarCliente from './routes/CadastrarCliente';
+import ExibirClientes from './routes/ExibirClientes';
 
 const GlobalStyle = createGlobalStyle `
   body {
@@ -31,6 +33,8 @@ root.render(
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
+        <Route path="/cadastrar-cliente" element={<CadastrarCliente/>} />
+        <Route path="/exibir-clientes" element={<ExibirClientes/>} />
         <Route path="" element={<Home/>}/>
       </Routes>
     </BrowserRouter>

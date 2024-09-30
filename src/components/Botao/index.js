@@ -17,9 +17,9 @@ const Button = styled.button`
   }
 `
 
-function Botao({ texto, evento }) {
+function Botao({ texto, onClick }) {
     return (
-        <Button onClick={evento}>{texto}</Button>
+        <Button onClick={onClick}>{texto}</Button>
     );
 }
 
