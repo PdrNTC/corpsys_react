@@ -59,6 +59,15 @@ const SubmitButton = styled.button`
   }
 `;
 
+const Select = styled.select`
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+`;
+
 function Formulario ({ campos, titulo, onSubmit }) {
 
   const [formData, setFormData] = React.useState(
@@ -92,14 +101,23 @@ function Formulario ({ campos, titulo, onSubmit }) {
             <form onSubmit={handleSubmit}>
                 {campos.map((campo) => (
                 <InputContainer key={campo.nome}>
-                    <Label>{campo.label}:</Label>
-                    <Input
-                    type={campo.tipo}
-                    name={campo.nome}
-                    value={formData[campo.nome]}
-                    onChange={handleChange}
-                    required
-                    />
+                <Label>{campo.label}:</Label>
+                {campo.tipo === 'select' ? (
+                  <Select name={campo.nome} value={formData[campo.nome]} onChange={handleChange} required>
+                    <option value="" disabled>Selecione</option>
+                    {campo.opcoes.map((opcao) => (
+                      <option key={opcao.valor} value={opcao.valor}>{opcao.label}</option>
+                    ))}
+                  </Select>
+                    ) : (
+                      <Input
+                        type={campo.tipo}
+                        name={campo.nome}
+                        value={formData[campo.nome]}
+                        onChange={handleChange}
+                        required
+                      />
+                    )}
                 </InputContainer>
                 ))}
                 <SubmitButton type="submit">Cadastrar</SubmitButton>

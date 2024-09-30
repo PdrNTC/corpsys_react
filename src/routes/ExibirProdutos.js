@@ -64,7 +64,7 @@ const ExibirProdutos = () => {
                 <GrupoProdutoLista>
                 {produto.map((produto) => (
                     <GrupoProdutoItem key={produto.id}>
-                    {produto.tipo_produto}
+                    Produto: {produto.nome_produto} - R$ {produto.preco} - Grupo: {produto.grupo} 
                     </GrupoProdutoItem>
                 ))}
                 </GrupoProdutoLista>
