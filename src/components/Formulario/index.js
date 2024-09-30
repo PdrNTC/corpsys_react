@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import BotaoVoltar from '../BotaoVoltar';
 
 const FormWrapper = styled.div`
   display: flex;
@@ -58,8 +59,8 @@ const SubmitButton = styled.button`
   }
 `;
 
+function Formulario ({ campos, titulo, onSubmit }) {
 
-const Formulario = ({ campos, titulo, onSubmit }) => {
   const [formData, setFormData] = React.useState(
     campos.reduce((acc, campo) => {
       acc[campo.nome] = '';
@@ -75,6 +76,13 @@ const Formulario = ({ campos, titulo, onSubmit }) => {
   const handleSubmit = (evento) => {
     evento.preventDefault();
     onSubmit(formData);
+    // Limpar o formulário após a submissão
+    setFormData(
+      campos.reduce((acc, campo) => {
+        acc[campo.nome] = '';
+        return acc;
+      }, {})
+    );
   };
 
   return (
@@ -95,6 +103,7 @@ const Formulario = ({ campos, titulo, onSubmit }) => {
                 </InputContainer>
                 ))}
                 <SubmitButton type="submit">Cadastrar</SubmitButton>
+                <BotaoVoltar />
             </form>
         </FormContainer>
     </FormWrapper>

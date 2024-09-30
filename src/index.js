@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CadastrarCliente from './routes/CadastrarCliente';
 import ExibirClientes from './routes/ExibirClientes';
 import ExibirVendedores from './routes/ExibirVendedores';
-import CadastrarVendedores from './routes/CadastrarVendedores';
+import CadastrarVendedores from './routes/CadastrarVendedor';
+import ExibirGrupoProdutos from './routes/ExibirGrupoProdutos';
 
 const GlobalStyle = createGlobalStyle `
   body {
@@ -39,6 +40,7 @@ root.render(
         <Route path="/exibir-clientes" element={<ExibirClientes/>} />
         <Route path="/exibir-vendedores" element={<ExibirVendedores/>} />
         <Route path="/cadastrar-vendedor" element={<CadastrarVendedores/>} />
+        <Route path="/exibir-grupo-produtos" element={<ExibirGrupoProdutos/>} />
         <Route path="" element={<Home/>}/>
       </Routes>
     </BrowserRouter>
