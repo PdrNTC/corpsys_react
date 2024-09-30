@@ -1,6 +1,44 @@
-// src/pages/ExibirClientes.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const ListWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1a1a1a;
+`;
+
+const ListContainer = styled.div`
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  width: 600px;
+`;
+
+const ListTitle = styled.h2`
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff5252;
+`;
+
+const ClienteList = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+const ClienteItem = styled.li`
+  padding: 10px;
+  border-bottom: 1px solid #444;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
 
 const ExibirClientes = () => {
   const [clientes, setClientes] = useState([]);
@@ -19,20 +57,22 @@ const ExibirClientes = () => {
   }, []);
 
   return (
-    <div>
-        <h2>Lista de Clientes</h2>
-        {clientes.length > 0 ? (
-            <ul>
-            {clientes.map((cliente) => (
-                <li key={cliente.id}>
-                {cliente.nome} - {cliente.email} - {cliente.telefone}
-                </li>
-            ))}
-            </ul>
-        ) : (
-            <p>Nenhum cliente cadastrado.</p>
-        )}
-    </div>
+    <ListWrapper>
+        <ListContainer>
+            <ListTitle>Lista de Clientes</ListTitle>
+            {clientes.length > 0 ? (
+                <ClienteList>
+                {clientes.map((cliente) => (
+                    <ClienteItem key={cliente.id}>
+                    {cliente.nome} - {cliente.email} - {cliente.telefone}
+                    </ClienteItem>
+                ))}
+                </ClienteList>
+            ) : (
+                <p>Nenhum cliente cadastrado.</p>
+            )}
+        </ListContainer>
+    </ListWrapper>
   );
 };
 
