@@ -9,6 +9,7 @@ import ExibirClientes from './routes/ExibirClientes';
 import ExibirVendedores from './routes/ExibirVendedores';
 import CadastrarVendedores from './routes/CadastrarVendedor';
 import ExibirGrupoProdutos from './routes/ExibirGrupoProdutos';
+import CadastrarGrupoProduto from './routes/CadastrarGrupoProduto';
 
 const GlobalStyle = createGlobalStyle `
   body {
@@ -41,6 +42,8 @@ root.render(
         <Route path="/exibir-vendedores" element={<ExibirVendedores/>} />
         <Route path="/cadastrar-vendedor" element={<CadastrarVendedores/>} />
         <Route path="/exibir-grupo-produtos" element={<ExibirGrupoProdutos/>} />
+        <Route path="/cadastrar-grupo-produto" element={<CadastrarGrupoProduto/>} />
+        <Route path="/exibir-produtos" element={<CadastrarGrupoProduto/>} />
         <Route path="" element={<Home/>}/>
       </Routes>
     </BrowserRouter>
