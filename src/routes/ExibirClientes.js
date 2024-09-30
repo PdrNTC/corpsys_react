@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const ListWrapper = styled.div`
+const ListaWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@ const ListWrapper = styled.div`
   background-color: #1a1a1a;
 `;
 
-const ListContainer = styled.div`
+const ListaContainer = styled.div`
   background-color: #333;
   padding: 20px;
   border-radius: 10px;
@@ -19,13 +19,13 @@ const ListContainer = styled.div`
   width: 600px;
 `;
 
-const ListTitle = styled.h2`
+const ListaTitulo = styled.h2`
   text-align: center;
   margin-bottom: 20px;
   color: #ff5252;
 `;
 
-const ClienteList = styled.ul`
+const ClienteLista = styled.ul`
   list-style: none;
   padding: 0;
 `;
@@ -57,22 +57,22 @@ const ExibirClientes = () => {
   }, []);
 
   return (
-    <ListWrapper>
-        <ListContainer>
-            <ListTitle>Lista de Clientes</ListTitle>
+    <ListaWrapper>
+        <ListaContainer>
+            <ListaTitulo>Lista de Clientes</ListaTitulo>
             {clientes.length > 0 ? (
-                <ClienteList>
+                <ClienteLista>
                 {clientes.map((cliente) => (
                     <ClienteItem key={cliente.id}>
                     {cliente.nome} - {cliente.email} - {cliente.telefone}
                     </ClienteItem>
                 ))}
-                </ClienteList>
+                </ClienteLista>
             ) : (
                 <p>Nenhum cliente cadastrado.</p>
             )}
-        </ListContainer>
-    </ListWrapper>
+        </ListaContainer>
+    </ListaWrapper>
   );
 };
 
