@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import BotaoVoltar from '../components/BotaoVoltar';
 
 const ListaWrapper = styled.div`
   display: flex;
@@ -71,6 +72,7 @@ const ExibirProdutos = () => {
             ) : (
                 <p>Nenhum produto cadastrado.</p>
             )}
+            <BotaoVoltar />
         </ListaContainer>
     </ListaWrapper>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import BotaoVoltar from '../components/BotaoVoltar';
 
 const ListaWrapper = styled.div`
   display: flex;
@@ -64,13 +65,14 @@ const ExibirGrupoProdutos = () => {
                 <GrupoProdutoLista>
                 {grupoProduto.map((grupoProduto) => (
                     <GrupoProdutoItem key={grupoProduto.id}>
-                    {grupoProduto.tipo_produto}
+                    Tipo do produto: {grupoProduto.tipo_produto}
                     </GrupoProdutoItem>
                 ))}
                 </GrupoProdutoLista>
             ) : (
                 <p>Nenhum grupo de produto cadastrado.</p>
             )}
+            <BotaoVoltar />
         </ListaContainer>
     </ListaWrapper>
   );

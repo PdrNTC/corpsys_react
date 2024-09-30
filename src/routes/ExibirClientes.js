@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import BotaoVoltar from '../components/BotaoVoltar';
 
 const ListaWrapper = styled.div`
   display: flex;
@@ -64,13 +65,14 @@ const ExibirClientes = () => {
                 <ClienteLista>
                 {clientes.map((cliente) => (
                     <ClienteItem key={cliente.id}>
-                    {cliente.nome} - {cliente.email} - {cliente.telefone}
+                    Nome: {cliente.nome} - Email: {cliente.email} - Telefone: {cliente.telefone}
                     </ClienteItem>
                 ))}
                 </ClienteLista>
             ) : (
                 <p>Nenhum cliente cadastrado.</p>
             )}
+            <BotaoVoltar />
         </ListaContainer>
     </ListaWrapper>
   );

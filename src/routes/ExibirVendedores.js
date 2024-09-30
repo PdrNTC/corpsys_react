@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import BotaoVoltar from '../components/BotaoVoltar';
 
 const ListaWrapper = styled.div`
   display: flex;
@@ -64,13 +65,14 @@ const ExibirVendedores = () => {
                 <VendedorLista>
                 {vendedor.map((vendedor) => (
                     <VendedorItem key={vendedor.id}>
-                    {vendedor.nome} - {vendedor.email}
+                    Nome: {vendedor.nome} - Email: {vendedor.email}
                     </VendedorItem>
                 ))}
                 </VendedorLista>
             ) : (
                 <p>Nenhum vendedor cadastrado.</p>
             )}
+            <BotaoVoltar />
         </ListaContainer>
     </ListaWrapper>
   );

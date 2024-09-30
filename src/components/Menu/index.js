@@ -100,10 +100,10 @@ function Menu() {
                 </SubMenu>
                 </MenuItem>
                 <MenuItem>
-                    <SubMenuItem onClick={() => navigate('/vendas')}>Vendas</SubMenuItem>
+                    <SubMenuItem onClick={() => navigate('/cadastrar-venda')}>Vendas</SubMenuItem>
                 <SubMenu>
-                    <SubMenuItem onClick={() => navigate('/vendas')}>Cadastrar Venda</SubMenuItem>
-                    <SubMenuItem onClick={() => navigate('/vendas-efetuadas')}>Relatório de Venda</SubMenuItem>
+                    <SubMenuItem onClick={() => navigate('/cadastrar-venda')}>Cadastrar Venda</SubMenuItem>
+                    <SubMenuItem onClick={() => navigate('/relatorio-vendas')}>Relatório de Venda</SubMenuItem>
                 </SubMenu>
                 </MenuItem>
                 
