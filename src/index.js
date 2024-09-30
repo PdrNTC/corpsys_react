@@ -11,6 +11,7 @@ import CadastrarVendedores from './routes/CadastrarVendedor';
 import ExibirGrupoProdutos from './routes/ExibirGrupoProdutos';
 import CadastrarGrupoProduto from './routes/CadastrarGrupoProduto';
 
+// Estilo global 
 const GlobalStyle = createGlobalStyle `
   body {
     margin: 0;
