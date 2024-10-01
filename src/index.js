@@ -14,6 +14,8 @@ import ExibirProdutos from './routes/ExibirProdutos';
 import CadastrarProduto from './routes/CadastrarProduto';
 import CadastrarVendas from './routes/CadastrarVendas';
 import RelatorioVendas from './routes/RelatorioVendas';
+import EditarVendedor from './routes/EditarVendedor';
+import EditarCliente from './routes/EditarClientes';
 
 // Estilo global 
 const GlobalStyle = createGlobalStyle `
@@ -52,6 +54,8 @@ root.render(
         <Route path="/cadastrar-produto" element={<CadastrarProduto/>} />
         <Route path="/cadastrar-venda" element={<CadastrarVendas/>} />
         <Route path="/relatorio-vendas" element={<RelatorioVendas/>} />
+        <Route path="/vendedores/:id" element={<EditarVendedor/>} />
+        <Route path="/clientes/:id" element={<EditarCliente/>} />
         <Route path="" element={<Home/>}/>
       </Routes>
     </BrowserRouter>

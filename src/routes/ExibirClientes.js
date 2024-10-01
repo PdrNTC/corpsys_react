@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import BotaoVoltar from '../components/BotaoVoltar';
+import { useNavigate } from 'react-router-dom';
 
 const ListaWrapper = styled.div`
   display: flex;
@@ -40,9 +41,29 @@ const ClienteItem = styled.li`
   }
 `;
 
+const AcoesContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const BotaoAcao = styled.button`
+  background-color: ${(props) => (props.excluir ? '#ff5252' : '#4caf50')};
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${(props) => (props.excluir ? '#ff0000' : '#388e3c')};
+  }
+`;
+
 
 const ExibirClientes = () => {
   const [clientes, setClientes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchClientes = async () => {
@@ -57,6 +78,26 @@ const ExibirClientes = () => {
     fetchClientes();
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirmar = window.confirm('Tem certeza que deseja excluir este vendedor?');
+    if (confirmar) {
+      try {
+        await axios.delete(`http://localhost:8000/clientes/${id}/`);
+        setClientes(clientes.filter(cliente => cliente.id !== id));
+        alert('Cliente excluído com sucesso!');
+      } catch (error) {
+        console.error('Erro ao excluir Cliente:', error);
+        alert('Erro ao excluir o Cliente.');
+      }
+    }
+  };
+
+  const handleEdit = (id) => {
+    // Redirecionar para a página de edição do Cliente
+    navigate(`/clientes/${id}`);
+  };
+
+
   return (
     <ListaWrapper>
         <ListaContainer>
@@ -65,7 +106,13 @@ const ExibirClientes = () => {
                 <ClienteLista>
                 {clientes.map((cliente) => (
                     <ClienteItem key={cliente.id}>
-                    Nome: {cliente.nome} - Email: {cliente.email} - Telefone: {cliente.telefone}
+                      <div>
+                        Nome: {cliente.nome} - Email: {cliente.email} - Telefone: {cliente.telefone}
+                      </div>
+                      <AcoesContainer>
+                        <BotaoAcao onClick={() => handleEdit(cliente.id)}>Editar</BotaoAcao>
+                        <BotaoAcao excluir onClick={() => handleDelete(cliente.id)}>Excluir</BotaoAcao>
+                      </AcoesContainer>
                     </ClienteItem>
                 ))}
                 </ClienteLista>

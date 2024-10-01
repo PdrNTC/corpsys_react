@@ -40,6 +40,25 @@ const GrupoProdutoItem = styled.li`
   }
 `;
 
+const AcoesContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const BotaoAcao = styled.button`
+  background-color: ${(props) => (props.excluir ? '#ff5252' : '#4caf50')};
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${(props) => (props.excluir ? '#ff0000' : '#388e3c')};
+  }
+`;
+
 
 const ExibirGrupoProdutos = () => {
   const [grupoProduto, setGrupoProduto] = useState([]);
@@ -57,6 +76,25 @@ const ExibirGrupoProdutos = () => {
     fetchClientes();
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirmar = window.confirm('Tem certeza que deseja excluir este vendedor?');
+    if (confirmar) {
+      try {
+        await axios.delete(`http://localhost:8000/vendedores/${id}/`);
+        setGrupoProduto(grupoProduto.filter(grupoProduto => grupoProduto.id !== id));
+        alert('grupo de produto excluído com sucesso!');
+      } catch (error) {
+        console.error('Erro ao excluir Grupo produto:', error);
+        alert('Erro ao excluir o grupo de produto.');
+      }
+    }
+  };
+
+  
+  const handleEdit = (grupoProduto) => {
+    alert(`Editar Grupo: ${grupoProduto.tipo_produto}`);
+  };
+
   return (
     <ListaWrapper>
         <ListaContainer>
@@ -65,7 +103,13 @@ const ExibirGrupoProdutos = () => {
                 <GrupoProdutoLista>
                 {grupoProduto.map((grupoProduto) => (
                     <GrupoProdutoItem key={grupoProduto.id}>
-                    Tipo do produto: {grupoProduto.tipo_produto}
+                      <div>
+                        Tipo do produto: {grupoProduto.tipo_produto}
+                      </div>
+                      <AcoesContainer>
+                        <BotaoAcao onClick={() => handleEdit(grupoProduto)}>Editar</BotaoAcao>
+                        <BotaoAcao excluir onClick={() => handleDelete(grupoProduto.id)}>Excluir</BotaoAcao>
+                      </AcoesContainer>
                     </GrupoProdutoItem>
                 ))}
                 </GrupoProdutoLista>

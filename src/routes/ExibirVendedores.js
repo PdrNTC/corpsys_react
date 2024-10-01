@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import BotaoVoltar from '../components/BotaoVoltar';
 
 const ListaWrapper = styled.div`
@@ -34,46 +35,93 @@ const VendedorLista = styled.ul`
 const VendedorItem = styled.li`
   padding: 10px;
   border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &:last-child {
     border-bottom: none;
   }
 `;
 
+const AcoesContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const BotaoAcao = styled.button`
+  background-color: ${(props) => (props.excluir ? '#ff5252' : '#4caf50')};
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${(props) => (props.excluir ? '#ff0000' : '#388e3c')};
+  }
+`;
 
 const ExibirVendedores = () => {
-  const [vendedor, setVendedor] = useState([]);
+  const [vendedores, setVendedores] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchClientes = async () => {
+    const fetchVendedores = async () => {
       try {
         const response = await axios.get('http://localhost:8000/vendedores/');
-        setVendedor(response.data);
+        setVendedores(response.data);
       } catch (error) {
         console.error('Erro ao buscar vendedores:', error);
         alert('Erro ao buscar os vendedores na API!')
       }
     };
-    fetchClientes();
+    fetchVendedores();
   }, []);
+
+  const handleDelete = async (id) => {
+    const confirmar = window.confirm('Tem certeza que deseja excluir este vendedor?');
+    if (confirmar) {
+      try {
+        await axios.delete(`http://localhost:8000/vendedores/${id}/`);
+        setVendedores(vendedores.filter(vendedor => vendedor.id !== id));
+        alert('Vendedor excluído com sucesso!');
+      } catch (error) {
+        console.error('Erro ao excluir vendedor:', error);
+        alert('Erro ao excluir o vendedor.');
+      }
+    }
+  };
+
+  const handleEdit = (id) => {
+    // Redirecionar para a página de edição do vendedor
+    navigate(`/vendedores/${id}`);
+  };
 
   return (
     <ListaWrapper>
-        <ListaContainer>
-            <ListaTitulo>Lista de Vendedores</ListaTitulo>
-            {vendedor.length > 0 ? (
-                <VendedorLista>
-                {vendedor.map((vendedor) => (
-                    <VendedorItem key={vendedor.id}>
-                    Nome: {vendedor.nome} - Email: {vendedor.email}
-                    </VendedorItem>
-                ))}
-                </VendedorLista>
-            ) : (
-                <p>Nenhum vendedor cadastrado.</p>
-            )}
-            <BotaoVoltar />
-        </ListaContainer>
+      <ListaContainer>
+        <ListaTitulo>Lista de Vendedores</ListaTitulo>
+        {vendedores.length > 0 ? (
+          <VendedorLista>
+            {vendedores.map((vendedor) => (
+              <VendedorItem key={vendedor.id}>
+                <div>
+                  Nome: {vendedor.nome} - Email: {vendedor.email}
+                </div>
+                <AcoesContainer>
+                  <BotaoAcao onClick={() => handleEdit(vendedor.id)}>Editar</BotaoAcao>
+                  <BotaoAcao excluir onClick={() => handleDelete(vendedor.id)}>Excluir</BotaoAcao>
+                </AcoesContainer>
+              </VendedorItem>
+            ))}
+          </VendedorLista>
+        ) : (
+          <p>Nenhum vendedor cadastrado.</p>
+        )}
+        <BotaoVoltar />
+      </ListaContainer>
     </ListaWrapper>
   );
 };
