@@ -69,7 +69,7 @@ const ExibirClientes = () => {
     const fetchClientes = async () => {
       try {
         //const response = await axios.get('http://localhost:8000/clientes/');
-        const response = await axios.get('https://18.231.16.160:8000/clientes/');
+        const response = await axios.get('http://18.231.16.160:8000/clientes/');
         setClientes(response.data);
       } catch (error) {
         console.error('Erro ao buscar clientes:', error);
