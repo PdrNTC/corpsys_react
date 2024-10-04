@@ -47,7 +47,7 @@ const ExibirProdutos = () => {
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/produtos/');
+        const response = await axios.get('https://pedrohs.pythonanywhere.com/produtos/');
         setProduto(response.data);
       } catch (error) {
         console.error('Erro ao buscar os produtos:', error);

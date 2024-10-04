@@ -66,7 +66,7 @@ const ExibirGrupoProdutos = () => {
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/grupo-produtos/');
+        const response = await axios.get('https://pedrohs.pythonanywhere.com/grupo-produtos/');
         setGrupoProduto(response.data);
       } catch (error) {
         console.error('Erro ao buscar os grupos de produtos:', error);
@@ -80,7 +80,8 @@ const ExibirGrupoProdutos = () => {
     const confirmar = window.confirm('Tem certeza que deseja excluir este vendedor?');
     if (confirmar) {
       try {
-        await axios.delete(`http://localhost:8000/vendedores/${id}/`);
+        //await axios.delete(`http://localhost:8000/vendedores/${id}/`);
+        await axios.delete(`https://pedrohs.pythonanywhere.com/grupo-produtos/${id}/`);
         setGrupoProduto(grupoProduto.filter(grupoProduto => grupoProduto.id !== id));
         alert('grupo de produto excluído com sucesso!');
       } catch (error) {

@@ -11,7 +11,7 @@ function CadastrarProduto() {
   useEffect(() => {
     const fetchGrupos = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/grupo-produtos/');
+        const response = await axios.get('https://pedrohs.pythonanywhere.com/produtos/');
         setGrupos(response.data);
         setLoading(false);
       } catch (error) {

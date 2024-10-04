@@ -10,7 +10,7 @@ function CadastrarVendedores() {
 
     const handleSubmit = async (dados) => {
         try {
-            const response = await axios.post('http://localhost:8000/vendedores/', dados);
+            const response = await axios.post('https://pedrohs.pythonanywhere.com/vendedores/', dados);
             console.log('Vendedor cadastrado com sucesso:', response.data);
             alert('Vendedor cadastrado com sucesso no banco de dados!');
           } catch (error) {

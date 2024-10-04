@@ -38,7 +38,7 @@ function EditarCliente () {
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/clientes/${id}/`);
+        const response = await axios.get(`https://pedrohs.pythonanywhere.com/clientes/${id}/`);
         setCliente(response.data);
       } catch (error) {
         console.error('Erro ao buscar vendedor:', error);

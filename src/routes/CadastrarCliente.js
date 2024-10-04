@@ -11,7 +11,7 @@ function CadastrarCliente() {
 
     const handleSubmit = async (dados) => {
         try {
-            const response = await axios.post('http://localhost:8000/clientes/', dados);
+            const response = await axios.post('https://pedrohs.pythonanywhere.com/clientes/', dados);
             console.log('Cliente cadastrado com sucesso:', response.data);
             alert('Cliente cadastrado com sucesso no banco de dados!');
           } catch (error) {

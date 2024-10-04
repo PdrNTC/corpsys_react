@@ -70,7 +70,8 @@ const ExibirVendedores = () => {
   useEffect(() => {
     const fetchVendedores = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/vendedores/');
+        //const response = await axios.get('http://localhost:8000/vendedores/');
+        const response = await axios.get('https://pedrohs.pythonanywhere.com/vendedores/');
         setVendedores(response.data);
       } catch (error) {
         console.error('Erro ao buscar vendedores:', error);
@@ -84,7 +85,8 @@ const ExibirVendedores = () => {
     const confirmar = window.confirm('Tem certeza que deseja excluir este vendedor?');
     if (confirmar) {
       try {
-        await axios.delete(`http://localhost:8000/vendedores/${id}/`);
+        //await axios.delete(`http://localhost:8000/vendedores/${id}/`);
+        await axios.delete(`https://pedrohs.pythonanywhere.com/vendedores/${id}/`);
         setVendedores(vendedores.filter(vendedor => vendedor.id !== id));
         alert('Vendedor excluído com sucesso!');
       } catch (error) {

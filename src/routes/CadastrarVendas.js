@@ -99,9 +99,9 @@ function CadastrarVendas() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const vendedoresResponse = await axios.get('http://localhost:8000/vendedores/');
-        const clientesResponse = await axios.get('http://localhost:8000/clientes/');
-        const produtosResponse = await axios.get('http://localhost:8000/produtos/');
+        const vendedoresResponse = await axios.get('https://pedrohs.pythonanywhere.com/vendedores/');
+        const clientesResponse = await axios.get('https://pedrohs.pythonanywhere.com/clientes/');
+        const produtosResponse = await axios.get('https://pedrohs.pythonanywhere.com/produtos/');
         setVendedores(vendedoresResponse.data);
         setClientes(clientesResponse.data);
         setProdutos(produtosResponse.data);
@@ -127,7 +127,7 @@ function CadastrarVendas() {
     };
 
     try {
-      const response = await axios.post('http://localhost:8000/vendas/', dados);
+      const response = await axios.post('https://pedrohs.pythonanywhere.com/vendas/', dados);
       console.log('Venda cadastrada com sucesso:', response.data);
       alert('Venda cadastrada com sucesso no banco de dados!');
       navigate('/');

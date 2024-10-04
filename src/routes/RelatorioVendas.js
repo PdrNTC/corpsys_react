@@ -84,8 +84,11 @@ function RelatorioVendas() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const clientesResponse = await axios.get('http://localhost:8000/clientes/');
-        const vendedoresResponse = await axios.get('http://localhost:8000/vendedores/');
+        // const clientesResponse = await axios.get('http://localhost:8000/clientes/');
+        // const vendedoresResponse = await axios.get('http://localhost:8000/vendedores/');
+
+        const clientesResponse = await axios.get('https://pedrohs.pythonanywhere.com/clientes/');
+        const vendedoresResponse = await axios.get('https://pedrohs.pythonanywhere.com/vendedores/');
         setClientes(clientesResponse.data);
         setVendedores(vendedoresResponse.data);
       } catch (error) {
@@ -111,7 +114,7 @@ function RelatorioVendas() {
     }
 
     try {
-        const response = await axios.get('http://localhost:8000/vendas-efetuadas/', {
+        const response = await axios.get('https://pedrohs.pythonanywhere.com/vendas-efetuadas/', {
             params: {
                 data_inicial: formData.data_inicial,
                 data_final: formData.data_final,

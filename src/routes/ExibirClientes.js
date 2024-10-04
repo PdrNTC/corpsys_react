@@ -83,7 +83,8 @@ const ExibirClientes = () => {
     const confirmar = window.confirm('Tem certeza que deseja excluir este vendedor?');
     if (confirmar) {
       try {
-        await axios.delete(`http://localhost:8000/clientes/${id}/`);
+        //await axios.delete(`http://localhost:8000/clientes/${id}/`);
+        await axios.delete(`https://pedrohs.pythonanywhere.com/clientes/${id}/`);
         setClientes(clientes.filter(cliente => cliente.id !== id));
         alert('Cliente excluído com sucesso!');
       } catch (error) {

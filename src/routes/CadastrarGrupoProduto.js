@@ -9,7 +9,7 @@ function CadastrarGrupoProduto() {
 
     const handleSubmit = async (dados) => {
         try {
-            const response = await axios.post('http://localhost:8000/grupo-produtos/', dados);
+            const response = await axios.post('https://pedrohs.pythonanywhere.com/grupo-produtos/', dados);
             console.log('Grupo de produto cadastrado com sucesso:', response.data);
             alert('Grupo de produto cadastrado com sucesso no banco de dados!');
           } catch (error) {

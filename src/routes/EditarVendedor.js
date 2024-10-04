@@ -38,7 +38,7 @@ function EditarVendedor () {
   useEffect(() => {
     const fetchVendedor = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/vendedores/${id}/`);
+        const response = await axios.get(`https://pedrohs.pythonanywhere.com/vendedores/${id}/`);
         setVendedor(response.data);
       } catch (error) {
         console.error('Erro ao buscar vendedor:', error);
